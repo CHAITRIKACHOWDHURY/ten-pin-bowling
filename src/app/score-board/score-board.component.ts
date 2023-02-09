@@ -19,16 +19,23 @@ export class ScoreBoardComponent implements OnInit {
     private store: Store<{ game: Array<Player> }>,
     public router: Router
     ) {  
+    /** fetchs data from ngrx/store */
     this.playerList$ = store.select('game');
   }
 
   ngOnInit(): void {
+    this.setPartyList();
+  }
+  
+  /** sets mutable player list */
+  private setPartyList() {
     const list = this.getListOfPlayer();
     if (list && list.length > 0) {
       this.playerList = JSON.parse(JSON.stringify(list));
     }
   }
 
+  /** subscribes ngrx/store data */
   getListOfPlayer(): Array<Player> {
     let tempList: Array<Player> = [];
     this.playerList$.subscribe((players) => {
@@ -37,6 +44,7 @@ export class ScoreBoardComponent implements OnInit {
     return tempList;
   }
 
+  /** resets game and navigates to home */
   resetGame(): void {
     this.store.dispatch(resetGame());
     this.router.navigate(['home']);

@@ -9,6 +9,7 @@ export class CalculatorService {
 
   constructor() { }
 
+  /** calculates current scores of all the played frames*/
   calculateCurrentScore(frames: Array<Frame>): ScoreCard {
     let currentScore: ScoreCard = { score: 0 }; 
     frames.forEach((frame, index) => {
@@ -17,6 +18,7 @@ export class CalculatorService {
     return currentScore;
   }
 
+  /** calculates current scores of given frame*/
   private getCurrentFrameScore(frames: Array<Frame>, frame: Frame, frameIndex: number): number {
     let scoreOfCurrentFrame = 0;
     const nextFrame = frames[frameIndex + 1];
@@ -30,6 +32,7 @@ export class CalculatorService {
     return scoreOfCurrentFrame;
   }
 
+  /** calculates current scores of given frame except last frame*/
   private calculateScoreForNotLastFrame(
     frame: Frame, 
     scoreOfCurrentFrame: number, 
@@ -49,6 +52,7 @@ export class CalculatorService {
     return scoreOfCurrentFrame;
   }
 
+  /** sums up all finite input numbers*/
   sum(a: number, b?: number, c?: number): number {
     let s = 0;
     if (this.isPositiveFiniteNumber(a)) {
@@ -63,6 +67,7 @@ export class CalculatorService {
     return s;
   }
 
+  /** checks if finite positive number*/
   isPositiveFiniteNumber(a: number): boolean {
     return Number.isFinite(a) && a >=0;
   }

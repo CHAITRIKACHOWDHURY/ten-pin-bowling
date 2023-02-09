@@ -21,6 +21,7 @@ export class PlayerScoreBoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /** checks condition of First roll to be opened for given frame index*/
   isFirstRollOpen(i: number): boolean {
     const prevFrame = this.player.frames[i - 1];
     return (i === 0) ||
@@ -29,12 +30,14 @@ export class PlayerScoreBoardComponent implements OnInit {
         ((prevFrame.first + prevFrame.second) <= 10));
   }
 
+  /** checks condition of Second roll to be opened for given frame index*/
   isSeconRollOpen(i: number): boolean {
     const currentFrame = this.player.frames[i];
     return (i < 9 && this.scoreCalculator.isPositiveFiniteNumber(currentFrame.first) && currentFrame.first < 10) ||
       (i === 9 && this.scoreCalculator.isPositiveFiniteNumber(currentFrame.first) && currentFrame.first <= 10);
   }
 
+  /** checks condition of Third roll to be opened for given frame index*/
   isThirdRollOpen(i: number): boolean {
     const currentFrame = this.player.frames[i];
     return (this.scoreCalculator.isPositiveFiniteNumber(currentFrame.first) && 
@@ -43,6 +46,7 @@ export class PlayerScoreBoardComponent implements OnInit {
       ((currentFrame.first + currentFrame.second) <= 20)); 
   }
 
+  /** reset next roll when frame is updated as strike*/
   resetNextRolls(frame: Frame): void {
     if (frame.first === 10) {
       frame.second = undefined;
@@ -50,13 +54,14 @@ export class PlayerScoreBoardComponent implements OnInit {
     }
   }
 
+  /** calculate score if input is valid*/
   calculate(validInput: boolean) {
-    console.log(JSON.stringify(this.player.frames));
     if (validInput) {
       this.player.scoreCard = this.scoreCalculator.calculateCurrentScore(this.player.frames);
     }
   }
 
+  /** checks if form control is invalid*/
   invalidformControl(control: AbstractControl): boolean {
     return (control && control.invalid && (control.dirty || control.touched));
   }

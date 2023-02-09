@@ -24,7 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "sass",
             "assets": [
-              "src/favicon.ico",
+              "src/bowling-icon.svg",
               "src/assets"
             ],
             "styles": [
@@ -92,7 +92,7 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "sass",
             "assets": [
-              "src/favicon.ico",
+              "src/bowling-icon.svg",
               "src/assets"
             ],
             "styles": [
