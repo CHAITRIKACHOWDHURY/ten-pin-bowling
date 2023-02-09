@@ -1,0 +1,53 @@
+<div class="container-header">
+    Let's play
+</div>
+
+<div class="container-body">   
+    <ng-container *ngIf="playerList?.length > 0">
+        <ng-container *ngFor="let p of playerList; let i = index">
+            <div class="row row-item-center">
+                <b class="player">
+                    Player {{i+ 1}} -
+                </b>
+                <b class="text player-name">
+                    &nbsp;{{p?.name}}
+                </b>
+            </div>
+        </ng-container>
+        <div class="row row-item-center">
+            <button 
+                [routerLink]="['/score-board']"
+                type="button">
+                Start A Game
+            </button>
+        </div>
+
+        <div class="dotted">
+            <span class="dotted-in">
+                <b class="player">Or</b>
+            </span>
+        </div>
+    </ng-container>
+
+    <form 
+        #playerForm="ngForm" 
+        (ngSubmit)="addPlayer(newPlayer)">
+        <div class="row row-item-center">
+            <label class="text">Enter Player Name</label>
+            <input 
+                class="left-margin"
+                [ngClass]="{'error': invalidformControl(playerForm?.controls['playerName'])}"
+                [name]="'playerName'" 
+                type="string"
+                [(ngModel)]="newPlayer.name" 
+                [ngbTooltip]="invalidformControl(playerForm?.controls['playerName']) ? 'Please enter player name to continue' : ''"
+                required>
+            <button 
+                class="left-margin"
+                type="submit">
+                {{addPlayerBtnName}}
+            </button>
+        </div>
+    </form>
+</div>
+

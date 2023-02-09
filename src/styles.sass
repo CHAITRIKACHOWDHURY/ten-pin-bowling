@@ -1,1 +1,193 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+/* @import '~bootstrap/scss/bootstrap' */
+
+$header_color_1: #913175
+$header_color_2: #CD5888
+$font_color_1: #ffffff
+$font_color_2: #913175
+$font_color_3: #20262E
+$background_color: #20262E
+$error_color: #ff8000
+$button_color: #CD5888
+$container_background_color: #BDCDE7
+$primary_font: cursive
+$border_radius: 9px
+
+@mixin border-round
+    border-radius: $border_radius
+@mixin primary-font
+    font-family: $primary_font
+@mixin center-align
+    align-items: center
+    justify-content: center
+@mixin top-bottom-margin
+    margin: 15px 0 15px 0
+@mixin upper-case
+    text-transform: uppercase
+
+.header 
+    @include center-align
+    @include upper-case
+    height: 70px
+    background-color: $header_color_1
+    display: flex
+
+.logo
+    color: $font_color_1
+    font-weight: 900
+    font-family: math
+    font-size: xx-large
+    display: flex
+    align-items: center
+
+.logoIcon
+    background-image: url(./assets/bowling-logo.svg)
+    background-size: 50px
+    height: 50px
+    width: 50px
+
+.container
+    background-color: $background_color
+    display: flex
+    overflow-y: auto
+    overflow-y: hidden
+    flex-direction: column
+    font-size: 16px
+    font-style: normal
+    margin: 20px
+
+.container-header 
+    @include border-round
+    @include upper-case
+    background-color: $header_color_2
+    color: $font_color_1
+    padding: 15px
+    font-weight: 700
+    font-family: $primary_font
+
+.container-body
+    @include border-round
+    display: flex
+    padding: 20px
+    overflow: hidden
+    flex-direction: column
+    background-color: $container_background_color
+    margin-top: 20px
+
+body 
+    background-color: $background_color
+    margin: 0px
+
+button
+    @include border-round
+    @include primary-font
+    @include upper-case
+    background-color: $header_color_1
+    color: $font_color_1
+    min-height: 35px
+    outline: none
+    display: flex
+    align-items: center
+    cursor: pointer
+    border: none
+
+input
+    @include border-round
+    border: 2px solid $button_color
+    height: 40px
+    outline: none
+
+.error
+    border: 2px solid $error_color !important
+
+.tooltip
+    background-color: $error_color
+    border-radius: 40px
+
+.tooltip-inner
+    padding: 3px 8px
+    color: $font_color_1
+
+.score
+    padding: 5px
+    width: 30px
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button 
+    -webkit-appearance: none
+    margin: 0
+
+input[type="number"] 
+    -moz-appearance: textfield
+
+.score-board
+    align-items: center
+
+.pull-right
+    margin-left: auto
+
+table
+    width: 100%
+
+table td, table th 
+    border: 1px solid $font_color_2
+
+table tr:first-child th 
+    border-top: 0
+      
+table tr:last-child td 
+    border-bottom: 0
+      
+table tr td:first-child,  table tr th:first-child 
+    border-left: 0
+      
+table tr td:last-child, table tr th:last-child 
+    border-right: 0
+      
+.cell
+    width: 9%
+    text-align: center
+    vertical-align: middle
+
+.row
+    display: flex
+    flex-direction: row  !important
+    @include top-bottom-margin
+
+.row-item-center
+    @include center-align
+
+.text
+    @include primary-font
+    color: $font_color_2
+
+.left-margin
+    margin-left: 10px
+
+.player
+    @include primary-font
+    color: $font_color_3
+
+.dotted
+    @include top-bottom-margin
+    width: 100%
+    height: 20px
+    border-bottom: 1px dotted $font_color_2
+    text-align: center
+
+.underline
+    border-bottom: 2px solid $font_color_2
+
+.dotted-in
+    padding: 0 20px
+    line-height: 2
+    background-color: $container_background_color
+
+.player-name
+    font-size: large
+    font-style: italic
+    @include upper-case
+
+

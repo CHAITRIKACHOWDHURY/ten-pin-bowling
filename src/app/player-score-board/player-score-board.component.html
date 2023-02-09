@@ -1,0 +1,73 @@
+
+<div class="row underline">
+    <b class="text player-name">
+        {{player?.name}}
+    </b>
+</div>
+<form 
+    #gameForm="ngForm">
+    <table>
+        <tr>
+            <ng-container *ngFor="let frame of player.frames; let i = index">
+                <th class="cell player">Frame {{i + 1}}</th>
+            </ng-container>
+            <th class="cell text player-name">Score</th>
+        </tr>
+        <tr>
+            <ng-container *ngFor="let frame of player.frames; let i = index">
+                <td class="cell">
+                    <div class="row row-item-center">
+                        <input 
+                            class="score"
+                            [ngClass]="{'error': invalidformControl(gameForm?.controls['firstRole_' + i + player?.id])}"
+                            [ngbTooltip]="invalidformControl(gameForm?.controls['firstRole_' + i + player?.id]) ? 'Please enter valid score' : ''"
+                            [name]="'firstRole_' + i + player?.id" 
+                            type="number"
+                            [max]="10"
+                            [min]="0"
+                            pattern="[0-9]*"
+                            (change)="calculate(gameForm?.controls['firstRole_' + i + player?.id]?.valid); resetNextRolls(frame)"
+                            [disabled]="!isFirstRollOpen(i)"
+                            [(ngModel)]="frame.first" 
+                            required>
+                    </div>
+                    <div class="row row-item-center">
+                        <input 
+                            class="score"
+                            [ngClass]="{'error': invalidformControl(gameForm?.controls['secondRole_' + i + player?.id])}"
+                            [ngbTooltip]="invalidformControl(gameForm?.controls['secondRole_' + i + player?.id]) ? 'Please enter valid score' : ''"
+                            [name]="'secondRole_' + i + player?.id"  
+                            type="number"
+                            [max]="(i === 9 && frame.first === 10) ? 10 : 10 - frame.first"
+                            [min]="0"
+                            pattern="[0-9]*"
+                            (change)="calculate(gameForm?.controls['secondRole_' + i + player?.id]?.valid)"
+                            [disabled]="!isSeconRollOpen(i)"
+                            [(ngModel)]="frame.second" 
+                            required>
+                    </div>
+                    <ng-container *ngIf="i === 9">
+                        <div class="row row-item-center">
+                            <input 
+                                class="score"
+                                [ngClass]="{'error': invalidformControl(gameForm?.controls['thirdRole_' + i + player?.id])}"
+                                [ngbTooltip]="invalidformControl(gameForm?.controls['thirdRole_' + i + player?.id]) ? 'Please enter valid score' : ''"
+                                [name]="'thirdRole_' + i + player?.id"  
+                                type="number"
+                                [max]="(i === 9 && (frame.second === 10) || (frame.first + frame.second === 10)) ? 10 : 10 - frame.second"
+                                [min]="0"
+                                pattern="[0-9]*"
+                                (change)="calculate(gameForm?.controls['thirdRole_' + i + player?.id]?.valid)"
+                                [disabled]="!isThirdRollOpen(i)"
+                                [(ngModel)]="frame.third" 
+                                required>
+                        </div>
+                    </ng-container>
+                </td>
+            </ng-container>
+            <td class="cell text player-name">{{player?.scoreCard?.score}}</td>
+        </tr>
+    </table>
+</form>
+
+
