@@ -1,4 +1,4 @@
-# TenPinBowling
+# Ten Pin Bowling
 This is the assesment submission project for Ten Pin Bowling Score Calculator.   
 ## Business Rules
 
