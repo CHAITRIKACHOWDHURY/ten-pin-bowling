@@ -1,5 +1,5 @@
 # Ten Pin Bowling
-This is the assesment submission project for Ten Pin Bowling Score Calculator.   
+Project for Ten Pin Bowling Score Calculator.   
 ## Business Rules
 
 * A game consists of ten frames. Frame 1-9 are composed of two rolls. Frame 10 can be composed of up to three rolls 
